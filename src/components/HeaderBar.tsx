@@ -12,9 +12,8 @@ import {
   MenuItem
 } from '@mui/material'
 import { Adb as AdbIcon, Menu as MenuIcon } from '@mui/icons-material'
-// import pdf from '../resources/ChaceBrumleyResume.pdf'
 
-const pages = ['Products', 'Pricing', 'Blog']
+const pages = ['About', 'Experience', 'Projects']
 
 const HeaderBar = (): JSX.Element => {
   const [anchorElNav, setAnchorElNav] = React.useState(null)
@@ -118,7 +117,11 @@ const HeaderBar = (): JSX.Element => {
               ))}
               <Box sx={{ flexGrow: 0, backgroundColor: 'red' }}>
                 <Link to="/resume" target="_blank">Resume</Link>
-                  <Button sx={{ p: 0 }} />
+                <Button sx={{ p: 0 }} />
+              </Box>
+              <Box sx={{ flexGrow: 0, backgroundColor: 'blue' }}>
+                <Link to="/projectone" target="_blank">Project One</Link>
+                <Button sx={{ p: 0 }} />
               </Box>
             </Box>
           </Toolbar>
