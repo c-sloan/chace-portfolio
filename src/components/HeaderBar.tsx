@@ -24,10 +24,9 @@ const HeaderBar = (): JSX.Element => {
                 fontWeight: 700,
                 letterSpacing: '.3rem',
                 color: 'black',
-                width: 'auto',
+                width: '100px',
                 display: 'block',
-                marginTop: 'auto',
-                marginBottom: 'auto',
+                margin: 'auto auto auto 0',
                 float: 'left'
               }}
             >
