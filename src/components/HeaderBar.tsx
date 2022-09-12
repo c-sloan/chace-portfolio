@@ -4,125 +4,57 @@ import {
   AppBar,
   Box,
   Toolbar,
-  IconButton,
   Typography,
-  Menu,
   Container,
-  Button,
-  MenuItem
+  Button
 } from '@mui/material'
-import { Adb as AdbIcon, Menu as MenuIcon } from '@mui/icons-material'
 
-const pages = ['About', 'Experience', 'Projects']
+const pages: { [key: string]: string } = { About: 'About', Experience: 'Experience', Resume: 'Resume', Project: 'Project' }
 
 const HeaderBar = (): JSX.Element => {
-  const [anchorElNav, setAnchorElNav] = React.useState(null)
-
-  const handleOpenNavMenu = (event: any) => {
-    setAnchorElNav(event.currentTarget)
-  }
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null)
-  }
-
   return (
     <Fragment>
-      <AppBar position="static">
+      <AppBar position="static" sx={{ opacity: 0.4, backgroundColor: 'white' }}>
         <Container maxWidth="xl">
-          <Toolbar disableGutters>
-            <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-            <Typography
-              variant="h6"
-              noWrap
-              component="a"
-              href="/"
-              sx={{
-                mr: 2,
-                display: { xs: 'none', md: 'flex' },
-                fontFamily: 'monospace',
-                fontWeight: 700,
-                letterSpacing: '.3rem',
-                color: 'inherit',
-                textDecoration: 'none'
-              }}
-            >
-              LOGO
-            </Typography>
-
-            <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-              <IconButton
-                size="large"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleOpenNavMenu}
-                color="inherit"
-              >
-                <MenuIcon />
-              </IconButton>
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorElNav}
-                anchorOrigin={{
-                  vertical: 'bottom',
-                  horizontal: 'left'
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'left'
-                }}
-                open={Boolean(anchorElNav)}
-                onClose={handleCloseNavMenu}
-                sx={{
-                  display: { xs: 'block', md: 'none' }
-                }}
-              >
-                {pages.map((page) => (
-                  <MenuItem key={page} onClick={handleCloseNavMenu}>
-                    <Typography textAlign="center">{page}</Typography>
-                  </MenuItem>
-                ))}
-              </Menu>
-            </Box>
-            <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
-            <Typography
-              variant="h5"
-              noWrap
-              component="a"
-              href=""
-              sx={{
-                mr: 2,
-                display: { xs: 'flex', md: 'none' },
-                flexGrow: 1,
-                fontFamily: 'monospace',
-                fontWeight: 700,
-                letterSpacing: '.3rem',
-                color: 'inherit',
-                textDecoration: 'none'
-              }}
-            >
-              LOGO
-            </Typography>
+          <Toolbar>
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-              {pages.map((page) => (
+            <Typography
+              sx={{
+                fontFamily: 'monospace',
+                fontWeight: 700,
+                letterSpacing: '.3rem',
+                color: 'black',
+                width: 'auto',
+                display: 'block',
+                marginTop: 'auto',
+                marginBottom: 'auto',
+                float: 'left'
+              }}
+            >
+              Chace Brumley
+            </Typography>
+            <Box>
+            {Object.keys(pages).map((key, index) => {
+              return (
                 <Button
-                  key={page}
-                  onClick={handleCloseNavMenu}
-                  sx={{ my: 2, color: 'white', display: 'block' }}
+                  key={index}
+                  sx={{ my: 2, display: 'block', color: 'black' }}
+                  component={Link}
+                  to={`/${pages[key].toLowerCase()}`}
+                  // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+                  target= {pages[key] === ('Resume' || 'Project') ? '_blank' : ''}
                 >
-                  {page}
+                  {pages[key]}
                 </Button>
-              ))}
-              <Box sx={{ flexGrow: 0, backgroundColor: 'red' }}>
-                <Link to="/resume" target="_blank">Resume</Link>
-                <Button sx={{ p: 0 }} />
-              </Box>
-              <Box sx={{ flexGrow: 0, backgroundColor: 'blue' }}>
-                <Link to="/projectone" target="_blank">Project One</Link>
-                <Button sx={{ p: 0 }} />
-              </Box>
+              )
+            })}
+              <Button sx={{ my: 2, display: 'block', color: 'black' }} component={Link} to="/resume" target="_blank">
+                Resume
+              </Button>
+              <Button sx={{ my: 2, display: 'block', color: 'black' }} component={Link} to="/projectone" target="_blank">
+                Project
+              </Button>
+            </Box>
             </Box>
           </Toolbar>
         </Container>
