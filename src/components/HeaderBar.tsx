@@ -33,12 +33,12 @@ const HeaderBar = (): JSX.Element => {
             >
               Chace Brumley
             </Typography>
-            <Box>
+            <Box sx={{ display: 'inherit' }}>
             {Object.keys(pages).map((key, index) => {
               return (
                 <Button
                   key={index}
-                  sx={{ my: 2, display: 'block', color: 'black' }}
+                  sx={{ my: 2, color: 'black' }}
                   component={Link}
                   to={`/${pages[key].toLowerCase()}`}
                   // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
@@ -48,12 +48,6 @@ const HeaderBar = (): JSX.Element => {
                 </Button>
               )
             })}
-              <Button sx={{ my: 2, display: 'block', color: 'black' }} component={Link} to="/resume" target="_blank">
-                Resume
-              </Button>
-              <Button sx={{ my: 2, display: 'block', color: 'black' }} component={Link} to="/projectone" target="_blank">
-                Project
-              </Button>
             </Box>
             </Box>
           </Toolbar>
