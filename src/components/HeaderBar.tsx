@@ -9,45 +9,71 @@ import {
   Button
 } from '@mui/material'
 
-const pages: { [key: string]: string } = { About: 'About', Experience: 'Experience', Resume: 'Resume', Project: 'Project' }
-
 const HeaderBar = (): JSX.Element => {
   return (
     <Fragment>
-      <AppBar position="static" sx={{ opacity: 0.4, backgroundColor: 'white' }}>
+      <AppBar position="sticky" sx={{ opacity: 0.4, backgroundColor: 'white' }}>
         <Container maxWidth="xl">
           <Toolbar>
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            <Typography
-              sx={{
-                fontFamily: 'monospace',
-                fontWeight: 700,
-                letterSpacing: '.3rem',
-                color: 'black',
-                width: '100px',
-                display: 'block',
-                margin: 'auto auto auto 0',
-                float: 'left'
-              }}
-            >
-              Chace Brumley
-            </Typography>
-            <Box sx={{ display: 'inherit' }}>
-            {Object.keys(pages).map((key, index) => {
-              return (
-                <Button
-                  key={index}
-                  sx={{ my: 2, color: 'black' }}
-                  component={Link}
-                  to={`/${pages[key].toLowerCase()}`}
-                  // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
-                  target= {pages[key] === ('Resume' || 'Project') ? '_blank' : ''}
-                >
-                  {pages[key]}
-                </Button>
-              )
-            })}
-            </Box>
+              <Typography
+                sx={{
+                  fontFamily: 'monospace',
+                  fontWeight: 700,
+                  letterSpacing: '.3rem',
+                  color: 'black',
+                  width: '100px',
+                  display: 'block',
+                  margin: 'auto auto auto 0',
+                  float: 'left'
+                }}
+              >
+                Chace Brumley
+              </Typography>
+              <Button
+                disableElevation
+                disableRipple
+                sx={{
+                  color: 'black',
+                  my: 2,
+                  '&.MuiButtonBase-root:hover': {
+                    bgcolor: 'transparent'
+                  }
+                }}
+                component={Link}
+                to={'/resume'}
+                target={'_blank'}
+              >
+                Resume
+              </Button>
+              <Button
+                disableElevation
+                disableRipple
+                href="#about-me"
+                sx={{
+                  ml: 1,
+                  color: 'black',
+                  '&.MuiButtonBase-root:hover': {
+                    bgcolor: 'transparent'
+                  }
+                }}
+              >
+                About
+              </Button>
+              <Button
+                disableElevation
+                disableRipple
+                href="#projects"
+                sx={{
+                  color: 'black',
+                  ml: 1,
+                  '&.MuiButtonBase-root:hover': {
+                    bgcolor: 'transparent'
+                  }
+                }}
+              >
+                Projects
+              </Button>
             </Box>
           </Toolbar>
         </Container>

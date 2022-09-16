@@ -1,6 +1,7 @@
 import React from 'react'
 import About from './About'
 import HeaderBar from './HeaderBar'
+import Projects from './Projects'
 import backgroundImage from '../resources/IcelandBlur.jpg'
 
 const Home = () => {
@@ -14,6 +15,7 @@ const Home = () => {
     }}>
       <HeaderBar />,
       <About />,
+      <Projects />,
     </div>
   )
 }
