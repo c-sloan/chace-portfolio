@@ -1,46 +1,107 @@
-import React from 'react'
+
+import React, { useEffect, useRef } from 'react'
 
 const Cursor = () => {
-  const cursor = document.querySelector('.cursor')
-  const cursorinner = document.querySelector('.cursor2')
-  const a = document.querySelectorAll('a')
+  const delay = 18
 
-  document.addEventListener('mousemove', function (e) {
-    const x = e.clientX
-    const y = e.clientY
-    cursor.style.transform = `translate3d(calc(${x}px - 50%), calc(${y}px - 50%), 0)`
-  })
+  const dot = useRef(null)
+  const dotOutline = useRef(null)
 
-  document.addEventListener('mousemove', function (e) {
-    const x = e.clientX
-    const y = e.clientY
-    cursorinner.style.left = x + 'px'
-    cursorinner.style.top = y + 'px'
-  })
+  const cursorVisible = useRef(true)
+  const cursorEnlarged = useRef(false)
 
-  document.addEventListener('mousedown', function () {
-    cursor.classList.add('click')
-    cursorinner.classList.add('cursorinnerhover')
-  })
+  const endX = useRef(window.innerWidth / 2)
+  const endY = useRef(window.innerHeight / 2)
+  const _x = useRef(0)
+  const _y = useRef(0)
 
-  document.addEventListener('mouseup', function () {
-    cursor.classList.remove('click')
-    cursorinner.classList.remove('cursorinnerhover')
-  })
+  const requestRef = useRef(null)
 
-  a.forEach((item) => {
-    item.addEventListener('mouseover', () => {
-      cursor.classList.add('hover')
-    })
-    item.addEventListener('mouseleave', () => {
-      cursor.classList.remove('hover')
-    })
-  })
+  useEffect(() => {
+    document.addEventListener('mousedown', mouseOverEvent)
+    document.addEventListener('mouseup', mouseOutEvent)
+    document.addEventListener('mousemove', mouseMoveEvent)
+    document.addEventListener('mouseenter', mouseEnterEvent)
+    document.addEventListener('mouseleave', mouseLeaveEvent)
+
+    animateDotOutline()
+
+    return () => {
+      document.removeEventListener('mousedown', mouseOverEvent)
+      document.removeEventListener('mouseup', mouseOutEvent)
+      document.removeEventListener('mousemove', mouseMoveEvent)
+      document.removeEventListener('mouseenter', mouseEnterEvent)
+      document.removeEventListener('mouseleave', mouseLeaveEvent)
+
+      cancelAnimationFrame(requestRef.current)
+    }
+  }, [])
+
+  const toggleCursorVisibility = () => {
+    if (cursorVisible.current) {
+      dot.current.style.opacity = 1
+      dotOutline.current.style.opacity = 1
+    } else {
+      dot.current.style.opacity = 0
+      dotOutline.current.style.opacity = 0
+    }
+  }
+
+  const toggleCursorSize = () => {
+    if (cursorEnlarged.current) {
+      dot.current.style.transform = 'translate(-50%, -50%) scale(0.75)'
+      dotOutline.current.style.transform = 'translate(-50%, -50%) scale(1.5)'
+    } else {
+      dot.current.style.transform = 'translate(-50%, -50%) scale(1)'
+      dotOutline.current.style.transform = 'translate(-50%, -50%) scale(1)'
+    }
+  }
+
+  const mouseOverEvent = () => {
+    cursorEnlarged.current = true
+    toggleCursorSize()
+  }
+
+  const mouseOutEvent = () => {
+    cursorEnlarged.current = false
+    toggleCursorSize()
+  }
+
+  const mouseEnterEvent = () => {
+    cursorVisible.current = true
+    toggleCursorVisibility()
+  }
+
+  const mouseLeaveEvent = () => {
+    cursorVisible.current = false
+    toggleCursorVisibility()
+  }
+
+  const mouseMoveEvent = e => {
+    cursorVisible.current = true
+    toggleCursorVisibility()
+
+    endX.current = e.clientX
+    endY.current = e.clientY
+
+    dot.current.style.top = endY.current + 'px'
+    dot.current.style.left = endX.current + 'px'
+  }
+
+  const animateDotOutline = () => {
+    _x.current += (endX.current - _x.current) / delay
+    _y.current += (endY.current - _y.current) / delay
+
+    dotOutline.current.style.top = _y.current + 'px'
+    dotOutline.current.style.left = _x.current + 'px'
+
+    requestRef.current = requestAnimationFrame(animateDotOutline)
+  }
 
   return (
     <>
-      <div className="cursor"></div>
-      <div className="cursor2"></div>
+      <div ref={dot} className="cursor"></div>
+      <div ref={dotOutline} className="cursor2"></div>
     </>
   )
 }

@@ -11,9 +11,9 @@ const Projects = (): JSX.Element => {
           height: 300,
           margin: '20px',
           opacity: [0.9, 0.8, 0.7],
-          backgroundColor: 'primary.main',
+          backgroundColor: '#014421',
           '&:hover': {
-            backgroundColor: 'primary.dark',
+            backgroundColor: '#014421',
             opacity: [1.0]
           }
         }}
@@ -24,9 +24,9 @@ const Projects = (): JSX.Element => {
           height: 300,
           margin: '20px',
           opacity: [0.9, 0.8, 0.7],
-          backgroundColor: 'primary.main',
+          backgroundColor: '#014421',
           '&:hover': {
-            backgroundColor: 'primary.dark',
+            backgroundColor: '#014421',
             opacity: [1.0]
           }
         }}
@@ -37,9 +37,9 @@ const Projects = (): JSX.Element => {
           height: 300,
           margin: '20px',
           opacity: [0.9, 0.8, 0.7],
-          backgroundColor: 'primary.main',
+          backgroundColor: '#014421',
           '&:hover': {
-            backgroundColor: 'primary.dark',
+            backgroundColor: '#014421',
             opacity: [1.0]
           }
         }}
