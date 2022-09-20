@@ -6,7 +6,7 @@ const About = (): JSX.Element => {
   const technologyStack = ['TypeScript', 'Javascript (ES6+)', 'React.js', 'D3.js', 'Node.js', 'Three.js']
   const techIntro = "Technology I've worked with recently:"
   return (
-    <Box id="about-me" sx={{ justifyContent: 'center', flexDirection: 'column', alignItems: 'flex-start', minHeight: '100vh', padding: '100px', color: 'white' }}>
+    <Box id="about-me" sx={{ justifyContent: 'center', flexDirection: 'column', alignItems: 'flex-start', minHeight: '50vh', padding: '100px', color: 'white' }}>
       <Typography variant='h3'>
         Hi.
       </Typography>

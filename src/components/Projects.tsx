@@ -3,7 +3,7 @@ import { Box } from '@mui/material'
 
 const Projects = (): JSX.Element => {
   return (
-    <div id="projects">
+    <Box id="projects" sx={{ justifyContent: 'center', flexDirection: 'column', alignItems: 'flex-start', minHeight: '50vh', padding: '100px', color: 'white' }}>
       <Box
         className="p1"
         sx={{
@@ -44,7 +44,7 @@ const Projects = (): JSX.Element => {
           }
         }}
       />
-    </div>
+    </Box>
   )
 }
 
